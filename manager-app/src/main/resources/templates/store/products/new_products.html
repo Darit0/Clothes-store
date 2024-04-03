@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Новый товар &ndash;</title>
+</head>
+<body>
+<a data-th-href="@{/store/products/list}">&larr; К списку товаров</a>
+
+<h1> Новый товар</h1>
+
+<form method = "post" data-th-action="@{/store/products/create}">
+    <label>
+        Название:<br>
+        <input type="text" name="title">
+    </label><br>
+    <label>
+        Описание:<br>
+        <textarea name="details"></textarea>
+    </label><br>
+    <button type="submit">Создать</button>
+
+</form>
+</body>
+</html>
