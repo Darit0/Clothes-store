@@ -8,15 +8,20 @@
 <a data-th-href="@{/store/products/list}">&larr; К списку товаров</a>
 
 <h1> Новый товар</h1>
-
+<div data-th-if="${errors}">
+    <h2 >Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error : ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
 <form method = "post" data-th-action="@{/store/products/create}">
     <label>
         Название:<br>
-        <input type="text" name="title">
+        <input type="text" name="title" data-th-value="${payload?.title}">
     </label><br>
     <label>
         Описание:<br>
-        <textarea name="details"></textarea>
+        <textarea name="details" data-th-text="${payload?.details}"></textarea>
     </label><br>
     <button type="submit">Создать</button>
 

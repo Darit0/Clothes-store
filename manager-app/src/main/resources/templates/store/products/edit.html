@@ -9,14 +9,21 @@
 
 <h1>  Редактирование товара &laquo; [[${product.title}]]</h1>
 
+<div data-th-if="${errors}">
+    <h2 >Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error : ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+
 <form method = "post" data-th-action="@{/store/products/{productId}/edit(productId=${product.id})}">
     <label>
         Название:<br>
-        <input type="text" name="title" data-th-value="${product.title}">
+        <input type="text" name="title" data-th-value="${payload != null ? payload.title : product.title}">
     </label><br>
     <label>
         Описание:<br>
-        <textarea name="details" data-th-text="${product.details}"></textarea>
+        <textarea name="details" data-th-text="${payload != null ? payload.details : product.details}"></textarea>
     </label><br>
     <button type="submit">Изменить</button>
 

@@ -38,4 +38,9 @@ public class DefaultProductService implements ProductService{
             throw new NoSuchElementException();
         });
     }
+
+    @Override
+    public void deleteProduct(Integer id) {
+        this.productRepository.deleteById(id);
+    }
 }
