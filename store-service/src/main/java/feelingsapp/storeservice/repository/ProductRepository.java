@@ -1,6 +1,6 @@
-package feelingsapp.managerapp.repository;
+package feelingsapp.storeservice.repository;
 
-import feelingsapp.managerapp.entity.Product;
+import feelingsapp.storeservice.entity.Product;
 
 import java.util.List;
 import java.util.Optional;

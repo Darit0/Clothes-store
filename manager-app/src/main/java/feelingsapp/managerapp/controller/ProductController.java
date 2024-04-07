@@ -1,12 +1,12 @@
 package feelingsapp.managerapp.controller;
 
+import feelingsapp.managerapp.client.BadRequestException;
+import feelingsapp.managerapp.client.ProductRestClient;
 import feelingsapp.managerapp.controller.payload.UpdateProductPayload;
 import feelingsapp.managerapp.entity.Product;
-import feelingsapp.managerapp.service.ProductService;
+
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -23,13 +23,13 @@ import java.util.NoSuchElementException;
 @RequestMapping("store/products/{productId:\\d+}")
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductRestClient productRestClient;
 
     private  final MessageSource messageSource;
 
     @ModelAttribute("product")
     public Product product(@PathVariable("productId") int productId){
-        return this.productService.findProduct(productId)
+        return this.productRestClient.findProduct(productId)
                 .orElseThrow(()->new NoSuchElementException("store.errors.product.not_found"));
     }
 
@@ -45,25 +45,25 @@ public class ProductController {
 
     @PostMapping("/edit")
     public String updateProduct(@ModelAttribute(name="product", binding = false) Product product,
-                                @Valid UpdateProductPayload payload,
-                                BindingResult bindingResult ,
-                                Model model){
+                                 UpdateProductPayload payload
+                                  ,Model model){
 
-        if (bindingResult.hasErrors()) {
+        try {
+            this.productRestClient.updateProduct(product.id(), payload.title(), payload.details());
+            return "redirect:/store/products/%d".formatted(product.id());
+        } catch (BadRequestException exception){
             model.addAttribute("payload", payload);
-            model.addAttribute("errors", bindingResult.getAllErrors().stream()
-                    .map(ObjectError::getDefaultMessage)
-                    .toList());
+            model.addAttribute("errors", exception.getErrors());
             return "store/products/edit";
-        }else{
-        this.productService.updateProduct(product.getId(), payload.title(), payload.details());
-        return "redirect:/store/products/%d".formatted(product.getId());
+
         }
+
     }
+
 
     @PostMapping("/delete")
     public String deleteProduct(@ModelAttribute("product") Product product){
-        this.productService.deleteProduct(product.getId());
+        this.productRestClient.deleteProduct(product.id());
         return "redirect:/store/products/list";
     }
 

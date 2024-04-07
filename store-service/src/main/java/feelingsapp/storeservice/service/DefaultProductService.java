@@ -1,7 +1,7 @@
-package feelingsapp.managerapp.service;
+package feelingsapp.storeservice.service;
 
-import feelingsapp.managerapp.entity.Product;
-import feelingsapp.managerapp.repository.ProductRepository;
+import feelingsapp.storeservice.entity.Product;
+import feelingsapp.storeservice.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
