@@ -1,2 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/store
+    username: postgres
+    password: demopass
+  flyway:
+    schemas:
+      - public
+      - store
+  jpa:
+    show-sql: true
 server:
   port: 8081
+  logging:
+    level:
+      sql: info

@@ -16,9 +16,11 @@ public class StoreController {
 
     private final ProductRestClient productRestClient;
 
+
     @GetMapping("/list")
-    public String getProductList(Model model) {
-        model.addAttribute("products", this.productRestClient.findAllProducts());
+    public String getProductsList(Model model, @RequestParam(name = "filter", required = false) String filter) {
+        model.addAttribute("products", this.productRestClient.findAllProducts(filter));
+        model.addAttribute("filter", filter);
         return "store/products/list";
 
     }

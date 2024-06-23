@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -23,8 +22,8 @@ public class ProductsRestController {
     private final ProductService productService;
 
     @GetMapping
-    public List<Product> findProducts() {
-        return this.productService.findAllProducts();
+    public Iterable<Product> findProducts(@RequestParam(name = "filter", required = false) String filter) {
+        return this.productService.findAllProducts(filter);
     }
 
     @PostMapping
@@ -42,10 +41,9 @@ public class ProductsRestController {
             Product product = this.productService.createProduct(payload.title(), payload.details());
             return ResponseEntity
                     .created(uriComponentsBuilder
-                            .replacePath("/store-api/products/{productId}")
+                            .replacePath("/catalogue-api/products/{productId}")
                             .build(Map.of("productId", product.getId())))
                     .body(product);
         }
     }
-
 }

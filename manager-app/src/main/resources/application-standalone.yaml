@@ -1,4 +1,4 @@
 clothes-store:
   services:
     store:
-      uri: http://localhost:8081
+      uri: http://localhost:8082

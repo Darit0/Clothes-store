@@ -2,15 +2,12 @@ package feelingsapp.storeservice.repository;
 
 import feelingsapp.storeservice.entity.Product;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
-public interface ProductRepository {
-    List<Product> findAll();
+public interface ProductRepository extends CrudRepository<Product, Integer> {
 
-    Product save(Product product);
-
-    Optional<Product> findById(Integer productId);
-
-    void deleteById(Integer id);
+    @Query(name = "Product.findAllByTitleLikeIgnoringCase", nativeQuery = true)
+    Iterable<Product> findAllByTitleLikeIgnoreCase(@Param("filter")String filter);
 }
