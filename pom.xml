@@ -8,6 +8,12 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>clothes-store</name>
     <description>clothes-store</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+    </dependencies>
 
     <packaging>pom</packaging>
     <modules>

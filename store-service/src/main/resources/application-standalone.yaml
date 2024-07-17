@@ -9,6 +9,11 @@ spring:
       - store
   jpa:
     show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8083/realms/clothes-store
 server:
   port: 8081
   logging:

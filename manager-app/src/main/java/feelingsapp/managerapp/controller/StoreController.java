@@ -5,9 +5,12 @@ import feelingsapp.managerapp.client.ProductRestClient;
 import feelingsapp.managerapp.controller.payload.NewProductPayload;
 import feelingsapp.managerapp.entity.Product;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,7 +20,7 @@ public class StoreController {
     private final ProductRestClient productRestClient;
 
 
-    @GetMapping("/list")
+    @GetMapping("list")
     public String getProductsList(Model model, @RequestParam(name = "filter", required = false) String filter) {
         model.addAttribute("products", this.productRestClient.findAllProducts(filter));
         model.addAttribute("filter", filter);
@@ -25,12 +28,12 @@ public class StoreController {
 
     }
 
-    @GetMapping("/create")
+    @GetMapping("create")
     public String getNewProductPage() {
         return "store/products/new_products";
     }
 
-    @PostMapping("/create")
+    @PostMapping("create")
     public String createProduct(NewProductPayload payload, Model model) {
         try {
             Product product = this.productRestClient.createProduct(payload.title(), payload.details());
