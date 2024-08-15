@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,6 +41,7 @@ public class ProductRestController {
     public ResponseEntity<?> updateProduct(@PathVariable("productId") int productId,
                                            @Valid @RequestBody UpdateProductPayload payload,
                                            BindingResult bindingResult) throws BindException {
+
         if (bindingResult.hasErrors()) {
             if (bindingResult instanceof BindException exception) {
                 throw exception;

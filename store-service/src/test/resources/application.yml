@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:16:///second-hand?TC_DAEMON=true
+    username: postgres
+    password: demopass
+  flyway:
+    schemas:
+      - public
+      - store
+

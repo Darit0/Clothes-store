@@ -5,7 +5,7 @@ import feelingsapp.storeservice.entity.Product;
 import feelingsapp.storeservice.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.http.*;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -13,7 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.security.Principal;
+
 import java.util.Map;
 
 @RestController
@@ -44,7 +44,7 @@ public class ProductsRestController {
             Product product = this.productService.createProduct(payload.title(), payload.details());
             return ResponseEntity
                     .created(uriComponentsBuilder
-                            .replacePath("/catalogue-api/products/{productId}")
+                            .replacePath("/store-api/products/{productId}")
                             .build(Map.of("productId", product.getId())))
                     .body(product);
         }

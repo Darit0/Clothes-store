@@ -5,12 +5,9 @@ import feelingsapp.managerapp.client.ProductRestClient;
 import feelingsapp.managerapp.controller.payload.NewProductPayload;
 import feelingsapp.managerapp.entity.Product;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor

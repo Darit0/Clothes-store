@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class RestClientProductRestClient implements ProductRestClient{
+public class RestClientProductRestClient implements ProductRestClient {
 
     private final static ParameterizedTypeReference<List<Product>> PRODUCTS_TYPE_REFERENCE=
             new ParameterizedTypeReference<>() {
