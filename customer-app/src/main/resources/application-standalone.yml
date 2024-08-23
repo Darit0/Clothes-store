@@ -1,0 +1,6 @@
+clothes-store:
+  services:
+    store:
+      uri: http://localhost:8081
+server:
+  port: 8084
