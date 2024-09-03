@@ -1,7 +1,7 @@
-package feelingsapp.customerapp.service;
+package feelingsapp.feedbackservice.service;
 
-import feelingsapp.customerapp.entity.Product;
-import feelingsapp.customerapp.entity.ProductReview;
+
+import feelingsapp.feedbackservice.entity.ProductReview;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

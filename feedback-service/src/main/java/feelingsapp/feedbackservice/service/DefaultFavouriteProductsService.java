@@ -1,7 +1,7 @@
-package feelingsapp.customerapp.service;
+package feelingsapp.feedbackservice.service;
 
-import feelingsapp.customerapp.entity.FavouriteProduct;
-import feelingsapp.customerapp.repository.FavouriteProductRepository;
+import feelingsapp.feedbackservice.entity.FavouriteProduct;
+import feelingsapp.feedbackservice.repository.FavouriteProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

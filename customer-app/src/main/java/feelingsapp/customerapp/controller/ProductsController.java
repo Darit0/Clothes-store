@@ -1,11 +1,10 @@
 package feelingsapp.customerapp.controller;
 
 
+import feelingsapp.customerapp.client.FavouriteProductsClient;
 import feelingsapp.customerapp.client.ProductsClient;
 import feelingsapp.customerapp.entity.FavouriteProduct;
-import feelingsapp.customerapp.service.FavouriteProductsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,7 @@ public class ProductsController {
 
     private final ProductsClient productsClient;
 
-    private final FavouriteProductsService favouriteProductsService;
+    private final FavouriteProductsClient favouriteProductsClient;
 
     @GetMapping("list")
     public Mono<String> getProductsListPage(Model model,
@@ -36,8 +35,8 @@ public class ProductsController {
     public Mono<String> getFavouriteProductPage(Model model,
                                                 @RequestParam(name="filter", required = false) String filter) {
         model.addAttribute("filter", filter);
-        return  this.favouriteProductsService.findFavouriteProducts()
-                .map(FavouriteProduct::getProductId)
+        return  this.favouriteProductsClient.findFavouriteProducts()
+                .map(FavouriteProduct::productId)
                 .collectList()
                 .flatMap(favouriteProducts -> this.productsClient.findAllProducts(filter)
                         .filter(product -> favouriteProducts.contains(product.id()))
