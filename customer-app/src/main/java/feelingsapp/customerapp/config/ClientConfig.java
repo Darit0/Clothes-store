@@ -22,7 +22,7 @@ public class ClientConfig {
 
     @Bean
     public WebClientFavouriteProductsClient webClientFavouriteProductsClient(
-            @Value("${clothes-store.services.feedback.uri:http://localhost:8083}") String feedbackBaseUri
+            @Value("${clothes-store.services.feedback.uri:http://localhost:8085}") String feedbackBaseUri
     ) {
         return new WebClientFavouriteProductsClient(WebClient.builder()
                 .baseUrl(feedbackBaseUri)
@@ -31,7 +31,7 @@ public class ClientConfig {
 
     @Bean
     public WebClientProductReviewsClient webClientProductReviewsClient(
-            @Value("${clothes-store.services.feedback.uri:http://localhost:8083}") String feedbackBaseUrl
+            @Value("${clothes-store.services.feedback.uri:http://localhost:8085}") String feedbackBaseUrl
     ) {
         return new WebClientProductReviewsClient(WebClient.builder()
                 .baseUrl(feedbackBaseUrl)
