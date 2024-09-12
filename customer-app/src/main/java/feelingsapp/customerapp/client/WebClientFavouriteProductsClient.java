@@ -18,6 +18,15 @@ public class WebClientFavouriteProductsClient implements FavouriteProductsClient
     private final WebClient webClient;
 
     @Override
+    public Flux<FavouriteProduct> findFavouriteProducts() {
+        return this.webClient
+                .get()
+                .uri("/feedback-api/favourite-products")
+                .retrieve()
+                .bodyToFlux(FavouriteProduct.class);
+    }
+
+    @Override
     public Mono<FavouriteProduct> findFavouriteProductByProductId(int productId) {
         return this.webClient
                 .get()
@@ -28,32 +37,21 @@ public class WebClientFavouriteProductsClient implements FavouriteProductsClient
     }
 
     @Override
-    public Flux<FavouriteProduct> findFavouriteProducts() {
-        return this.webClient
-                .get()
-                .uri("/feedback-api/favourite-products")
-                .retrieve()
-                .bodyToFlux(FavouriteProduct.class);
-    }
-
-    @Override
     public Mono<FavouriteProduct> addProductToFavourites(int productId) {
-
         return this.webClient
                 .post()
-                .uri("feedback-api/favourite-products")
+                .uri("/feedback-api/favourite-products")
                 .bodyValue(new NewFavouriteProductPayload(productId))
                 .retrieve()
                 .bodyToMono(FavouriteProduct.class)
                 .onErrorMap(WebClientResponseException.BadRequest.class,
                         exception -> new ClientBadRequestException(exception,
-                                ((List<String>)exception.getResponseBodyAs(ProblemDetail.class)
-                                        .getProperties().get("errors")) ));
+                                ((List<String>) exception.getResponseBodyAs(ProblemDetail.class)
+                                        .getProperties().get("errors"))));
     }
 
     @Override
     public Mono<Void> removeProductFromFavourites(int productId) {
-
         return this.webClient
                 .delete()
                 .uri("/feedback-api/favourite-products/by-product-id/{productId}", productId)

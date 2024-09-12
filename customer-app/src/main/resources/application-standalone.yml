@@ -2,5 +2,23 @@ clothes-store:
   services:
     store:
       uri: http://localhost:8081
+    feedback:
+      uri: http://localhost:8085
 server:
   port: 8084
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8083/realms/clothes-store
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: customer-app
+            client-secret: bG5JZMbrd2621jQ7Y8nFKYut9GSRAGpB
+            scope:
+              - openid
+              - view_catalogue
+

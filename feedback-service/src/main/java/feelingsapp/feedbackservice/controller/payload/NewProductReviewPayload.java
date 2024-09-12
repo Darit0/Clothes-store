@@ -13,5 +13,5 @@ public record NewProductReviewPayload (
         @Max(value = 5, message = "{feedback.products.reviews.create.errors.rating_is_above_max}")
         Integer rating,
         @Size(max=1000, message = "{feedback.products.reviews.create.errors.review_is_to_big}")
-        String reviews) {
+        String review) {
 }
