@@ -1,4 +1,4 @@
 package feelingsapp.customerapp.client.payload;
 
-public record NewProductReviewPayload(Integer productIs, Integer rating, String review) {
+public record NewProductReviewPayload(Integer productId, Integer rating, String review) {
 }
