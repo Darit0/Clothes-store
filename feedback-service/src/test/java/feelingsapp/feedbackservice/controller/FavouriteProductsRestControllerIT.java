@@ -169,7 +169,7 @@ class FavouriteProductsRestControllerIT {
                 .expectHeader().contentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON)
                 .expectBody().json("""
                         {
-                            "errors": ["Товар не указан"]
+                            "errors": ["ID введен неверно"]
                         }""");
     }
 

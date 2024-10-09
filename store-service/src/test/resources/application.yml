@@ -7,4 +7,8 @@ spring:
     schemas:
       - public
       - store
+    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
 

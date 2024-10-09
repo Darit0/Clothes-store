@@ -3,6 +3,13 @@ package feelingsapp.storeservice.controller;
 import feelingsapp.storeservice.controller.payload.NewProductPayload;
 import feelingsapp.storeservice.entity.Product;
 import feelingsapp.storeservice.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.StringToClassMapItem;
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +36,36 @@ public class ProductsRestController {
         return this.productService.findAllProducts(filter);
     }
 
-    @PostMapping
+//    @PostMapping
+//    @Operation(
+//            requstBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+//                    content = @Content(
+//                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+//                            schema = @Schema(
+//                                    type = "object",
+//                                    properties = {
+//                                            @StringToClassMapItem(key = "title", value = String.class),
+//                                            @StringToClassMapItem(key = "details", value = String.class)
+//                                    }
+//                            )
+//                    )
+//            ),
+//            responses = {
+//            @ApiResponse(
+//                    responseCode = "201",
+//                    headers = @Header(name = "Content-Type", description = "Тип данных"),
+//                    content = {@Content(
+//                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+//                            schema = @Schema(
+//                                    type = "object",
+//                                    properties = {
+//                                            @StringToClassMapItem(key = "id", value = Integer.class),
+//                                            @StringToClassMapItem(key = "title", value = String.class),
+//                                            @StringToClassMapItem(key = "details", value = String.class)
+//                                    }
+//                            ))}
+//            )
+//    })
     public ResponseEntity<?> createProduct(@Valid @RequestBody NewProductPayload payload,
                                            BindingResult bindingResult,
                                            UriComponentsBuilder uriComponentsBuilder)

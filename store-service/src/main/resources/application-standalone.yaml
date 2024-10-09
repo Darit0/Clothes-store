@@ -5,8 +5,9 @@ spring:
     password: demopass
   flyway:
     schemas:
-      - public
+
       - store
+    enabled: true
   jpa:
     show-sql: true
   security:
@@ -19,3 +20,11 @@ server:
   logging:
     level:
       sql: info
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: store-service-swagger-ui
+      use-pkce-with-authorization-code-grant: true
+keycloak:
+  uri: http://localhost:8083
+debug: true
