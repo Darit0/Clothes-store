@@ -1,0 +1,27 @@
+server:
+  port: 8086
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8083/realms/clothes-store
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8083/realms/clothes-store
+        registration:
+          keycloak:
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics
+            client-id: admin-service
+            client-secret: 5XAWdEM6mOmFS1B3Iw9bR3JmCRVdCzer
+          login:
+            provider: keycloak
+            scope:
+              - metrics
+              - openid
+            client-id: admin-service
+            client-secret: 5XAWdEM6mOmFS1B3Iw9bR3JmCRVdCzer
+

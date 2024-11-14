@@ -7,6 +7,14 @@ clothes-store:
 server:
   port: 8084
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8086
+        instance:
+          name: customer-app
+          service-host-type: ip
+        enabled: true
   security:
     oauth2:
       client:
@@ -18,7 +26,27 @@ spring:
           keycloak:
             client-id: customer-app
             client-secret: bG5JZMbrd2621jQ7Y8nFKYut9GSRAGpB
+            authorization-grant-type: authorization_code
             scope:
               - openid
               - view_catalogue
-
+          metrics:
+            provider: keycloak
+            client-id: customer-app-metrics-client
+            client-secret: 7ZLgK6AkuwGW7tev0pG3gbVcPcg4Hlah
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics_server
+        resourceserver:
+          jwt:
+            issuer-uri: http://localhost:8083/realms/clothes-store
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'

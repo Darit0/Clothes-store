@@ -1,4 +1,12 @@
 spring:
+  boot:
+    admin:
+      client:
+        enabled: true
+        instance:
+          name: store-service
+          service-host-type: ip
+        url: http://localhost:8086
   datasource:
     url: jdbc:postgresql://localhost:5432/store
     username: postgres
@@ -15,6 +23,17 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8083/realms/clothes-store
+      client:
+        registration:
+          keycloak:
+            client-id: store-service-metrics-client
+            client-secret: nUUNgZS5jPORguijA16ggCroBasuqjG9
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics_server
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8083/realms/clothes-store
 server:
   port: 8081
   logging:
@@ -27,4 +46,13 @@ springdoc:
       use-pkce-with-authorization-code-grant: true
 keycloak:
   uri: http://localhost:8083
-debug: true
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
