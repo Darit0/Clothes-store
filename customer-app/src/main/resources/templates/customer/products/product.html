@@ -8,6 +8,10 @@
 <a data-th-href="@{/customer/products/list}">&larr; К списку товаров</a>
 <h1 data-th-text="${product.title}"></h1>
 <p data-th-text="${product.details}"></p>
+<form method="post" data-th-action="@{/customer/products/{productId}/add-to-cart(productId=${product.id})}"
+      data-th-if="${inCart}">
+    <button type="submit">Добавить в Корзину</button>
+</form>
 <form method="post" data-th-action="@{/customer/products/{productId}/add-to-favourites(productId=${product.id})}"
       data-th-if="${!inFavourite}">
     <button type="submit">Добавить в избранное</button>

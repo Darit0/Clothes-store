@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Магазины на выбор &ndash; FeelingsStore</title>
+    <title>Корзина &ndash; Cart</title>
 </head>
 <body>
-<a data-th-href="@{/customer/products/favourites}">Избранное</a>
-<a href="http://127.0.0.1:5501/customer-app/src/main/resources/templates/customer/products/cart.html">Корзина</a>
+<a href="http://127.0.0.1:5501/customer-app/src/main/resources/templates/customer/products/list.html">Весь ассортимент</a>
+<a href="http://127.0.0.1:5501/customer-app/src/main/resources/templates/customer/products/favourites.html">Избранное</a>
 <a href="http://127.0.0.1:5501/customer-app/src/main/resources/static/index.html">Выйти</a>
-<h1>Магазины на выбор</h1>
+<h1>Корзина</h1>
 <form>
     <label>Фильтр: <input type="text" name="filter" data-th-value="${filter}"><button type="submit">Поиск</button></label>
 </form>
