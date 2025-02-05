@@ -1,0 +1,3 @@
+Cуть проекта создать веб площадку для секонд хендов, дабы люди не ходили по городу и не искали их, этакое перекрещение Авито и Wildberries. Со стороны покупателя это быстрый единый поиск, со стороны продавца ( владельца магазина) происходит SMM- продвижение его точки.
+
+The essence of the project is to create a web site for second-hand stores, so that people do not walk around the city and do not look for them, a kind of intersection of Avito and Wildberries. On the part of the buyer, this is a quick single search, on the part of the seller (the store owner), SMM promotion of his point takes place.
